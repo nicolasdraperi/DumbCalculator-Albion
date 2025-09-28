@@ -1,0 +1,57 @@
+{
+  "planche_chataignier": {
+    "requires": {
+      "silver": 9,
+      "tronc_chataignier": 2,
+      "planche_bouleau": 1
+    }
+  },
+  "planche_bouleau": {
+    "requires": {
+      "tronc_bouleau": 1
+    }
+  },
+  "planche_pin": {
+    "requires": {
+      "silver": 18,
+      "tronc_pin": 2,
+      "planche_chataignier": 1
+    }
+  },
+  "planche_cedre": {
+    "requires": {
+      "silver": 36,
+      "tronc_cedre": 3,
+      "planche_pin": 1
+    }
+  },
+  "planche_chene_rouge": {
+    "requires": {
+      "silver": 71,
+      "tronc_chene_rouge": 4,
+      "planche_cedre": 1
+    }
+  },
+  "planche_frene": {
+    "requires": {
+      "silver": 143,
+      "tronc_frene": 5,
+      "planche_chene_rouge": 1
+    }
+  },
+  "planche_epicea": {
+    "requires": {
+      "silver": 285,
+      "tronc_epicea": 5,
+      "planche_frene": 1
+    }
+  },
+  "tronc_chataignier": { "requires": {} },
+  "tronc_bouleau": { "requires": {} },
+  "tronc_pin": { "requires": {} },
+  "tronc_cedre": { "requires": {} },
+  "tronc_chene_rouge": { "requires": {} },
+  "tronc_frene": { "requires": {} },
+  "tronc_epicea": { "requires": {} },
+  "silver": { "requires": {} }
+}
