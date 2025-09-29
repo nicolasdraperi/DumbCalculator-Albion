@@ -216,3 +216,55 @@ header {
 .item-radio:hover {
   border-color: #fff;
 }
+
+/* === Filtre Tier === */
+#tierFilter {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#tierFilter label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #ffd700;
+}
+
+#tierFilter select {
+  appearance: none; /* supprime le style natif */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: #2b2b2b;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  /* icône custom ▼ */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23ffd700' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 128c3.6 3.6 7.8 5.4 12.9 5.4s9.3-1.8 12.9-5.4l128-128a17.6 17.6 0 0 0 5.4-12.9c0-5-1.8-9.2-5.4-12.8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px; /* espace pour la flèche */
+}
+
+#tierFilter select:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}
+
+#tierFilter select:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 6px #ffd70055;
+  outline: none;
+}
+
+#tierFilter option {
+  background: #2b2b2b;
+  color: #eee;
+  padding: 8px;
+}
+
