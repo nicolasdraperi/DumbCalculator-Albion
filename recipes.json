@@ -4,7 +4,8 @@
       "tronc_bouleau": 1
     },
     "tier": 2,
-    "icon": "media/plank/BirchPlanks.png"
+    "icon": "media/plank/BirchPlanks.png",
+    "category": "Planche"
   },
   "planche_chataignier": {
     "requires": {
@@ -13,7 +14,8 @@
       "planche_bouleau": 1
     },
     "tier": 3,
-    "icon": "media/plank/ChestnutPlanks.png"
+    "icon": "media/plank/ChestnutPlanks.png",
+    "category": "Planche"
   },
   "planche_pin": {
     "requires": {
@@ -22,7 +24,8 @@
       "planche_chataignier": 1
     },
     "tier": 4,
-    "icon": "media/plank/PinePlanks.png"
+    "icon": "media/plank/PinePlanks.png",
+    "category": "Planche"
   },
   "planche_cedre": {
     "requires": {
@@ -31,7 +34,8 @@
       "planche_pin": 1
     },
     "tier": 5,
-    "icon": "media/plank/CedarPlanks.png"
+    "icon": "media/plank/CedarPlanks.png",
+    "category": "Planche"
   },
   "planche_chene_rouge": {
     "requires": {
@@ -40,7 +44,8 @@
       "planche_cedre": 1
     },
     "tier": 6,
-    "icon": "media/plank/BloodoakPlanks.png"
+    "icon": "media/plank/BloodoakPlanks.png",
+    "category": "Planche"
   },
   "planche_frene": {
     "requires": {
@@ -49,7 +54,8 @@
       "planche_chene_rouge": 1
     },
     "tier": 7,
-    "icon": "media/plank/AshenbarkPlanks.png"
+    "icon": "media/plank/AshenbarkPlanks.png",
+    "category": "Planche"
   },
   "planche_epicea": {
     "requires": {
@@ -58,7 +64,8 @@
       "planche_frene": 1
     },
     "tier": 8,
-    "icon": "media/plank/WhitewoodPlanks.png"
+    "icon": "media/plank/WhitewoodPlanks.png",
+    "category": "Planche"
   },
 
   "barre_cuivre": {
@@ -66,7 +73,8 @@
       "minerai_cuivre": 1
     },
     "tier": 2,
-    "icon": "media/ingot/CopperBar.png"
+    "icon": "media/ingot/CopperBar.png",
+    "category": "Lingot"
   },
   "barre_bronze": {
     "requires": {
@@ -74,7 +82,8 @@
       "barre_cuivre": 1
     },
     "tier": 3,
-    "icon": "media/ingot/BronzeBar.png"
+    "icon": "media/ingot/BronzeBar.png",
+    "category": "Lingot"
   },
   "barre_acier": {
     "requires": {
@@ -82,7 +91,8 @@
       "barre_bronze": 1
     },
     "tier": 4,
-    "icon": "media/ingot/SteelBar.png"
+    "icon": "media/ingot/SteelBar.png",
+    "category": "Lingot"
   },
   "barre_titane": {
     "requires": {
@@ -90,7 +100,8 @@
       "barre_acier": 1
     },
     "tier": 5,
-    "icon": "media/ingot/TitaniumSteelBar.png"
+    "icon": "media/ingot/TitaniumSteelBar.png",
+    "category": "Lingot"
   },
   "barre_runite": {
     "requires": {
@@ -98,7 +109,8 @@
       "barre_titane": 1
     },
     "tier": 6,
-    "icon": "media/ingot/RuniteSteelBar.png"
+    "icon": "media/ingot/RuniteSteelBar.png",
+    "category": "Lingot"
   },
   "barre_meteorite": {
     "requires": {
@@ -106,7 +118,8 @@
       "barre_runite": 1
     },
     "tier": 7,
-    "icon": "media/ingot/MeteoriteSteelBar.png"
+    "icon": "media/ingot/MeteoriteSteelBar.png",
+    "category": "Lingot"
   },
   "barre_adamantine": {
     "requires": {
@@ -114,7 +127,8 @@
       "barre_meteorite": 1
     },
     "tier": 8,
-    "icon": "media/ingot/AdamantiumSteelBar.png"
+    "icon": "media/ingot/AdamantiumSteelBar.png",
+    "category": "Lingot"
   },
 
   "tronc_bouleau": {"requires": {}, "tier": 2, "icon": "media/log/BirchLogs.png"},
