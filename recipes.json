@@ -1,50 +1,64 @@
 {
+  "planche_bouleau": {
+    "requires": {
+      "tronc_bouleau": 1
+    },
+    "tier": 2,
+    "icon": "media/plank/BirchPlanks.png"
+  },
   "planche_chataignier": {
     "requires": {
       "silver": 9,
       "tronc_chataignier": 2,
       "planche_bouleau": 1
-    }
-  },
-  "planche_bouleau": {
-    "requires": {
-      "tronc_bouleau": 1
-    }
+    },
+    "tier": 3,
+    "icon": "media/plank/ChestnutPlanks.png"
   },
   "planche_pin": {
     "requires": {
       "silver": 18,
       "tronc_pin": 2,
       "planche_chataignier": 1
-    }
+    },
+    "tier": 4,
+    "icon": "media/plank/PinePlanks.png"
   },
   "planche_cedre": {
     "requires": {
       "silver": 36,
       "tronc_cedre": 3,
       "planche_pin": 1
-    }
+    },
+    "tier": 5,
+    "icon": "media/plank/CedarPlanks.png"
   },
   "planche_chene_rouge": {
     "requires": {
       "silver": 71,
       "tronc_chene_rouge": 4,
       "planche_cedre": 1
-    }
+    },
+    "tier": 6,
+    "icon": "media/plank/BloodoakPlanks.png"
   },
   "planche_frene": {
     "requires": {
       "silver": 143,
       "tronc_frene": 5,
       "planche_chene_rouge": 1
-    }
+    },
+    "tier": 7,
+    "icon": "media/plank/AshenbarkPlanks.png"
   },
   "planche_epicea": {
     "requires": {
       "silver": 285,
       "tronc_epicea": 5,
       "planche_frene": 1
-    }
+    },
+    "tier": 8,
+    "icon": "media/plank/WhitewoodPlanks.png"
   },
 
   "barre_cuivre": {
@@ -102,6 +116,7 @@
     "tier": 8,
     "icon": "media/ingot/AdamantiumSteelBar.png"
   },
+
   "tronc_bouleau": {"requires": {}, "tier": 2, "icon": "media/log/BirchLogs.png"},
   "tronc_chataignier": {"requires": {}, "tier": 3, "icon": "media/log/ChestnutLogs.png"},
   "tronc_pin": {"requires": {}, "tier": 4, "icon": "media/log/PineLogs.png"},
