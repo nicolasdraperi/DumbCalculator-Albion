@@ -105,7 +105,7 @@ function populateTable() {
       if (currentCategory !== "all" && recipes[key].category !== currentCategory) continue;
 
       // filtre par tier
-      if (currentTier !== "all" && recipeTier != currentTier) continue;
+      if (currentTier !== "all" && recipeTier !== currentTier) continue;
 
       const tr = document.createElement("tr");
 
