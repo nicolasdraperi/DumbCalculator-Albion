@@ -131,6 +131,83 @@
     "category": "Lingot"
   },
 
+  "morceau_tissu": {
+    "requires": {
+      "coton": 1
+    },
+    "tier": 2,
+    "icon": "media/cloth/SimpleCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_propre": {
+    "requires": {
+      "silver": 9,
+      "lin": 2,
+      "morceau_tissu": 1
+    },
+    "tier": 3,
+    "icon": "media/cloth/NeatCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_delicat": {
+    "requires": {
+      "silver": 18,
+      "chanvre": 2,
+      "tissu_propre": 1
+    },
+    "tier": 4,
+    "icon": "media/cloth/FineCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_ouvrage": {
+    "requires": {
+      "silver": 36,
+      "vanillier_cayenne": 3,
+      "tissu_delicat": 1
+    },
+    "tier": 5,
+    "icon": "media/cloth/OrnateCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_somptueux": {
+    "requires": {
+      "silver": 71,
+      "coton_ambre": 4,
+      "tissu_ouvrage": 1
+    },
+    "tier": 6,
+    "icon": "media/cloth/LavishCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_opulent": {
+    "requires": {
+      "silver": 143,
+      "lin_ensoleille": 5,
+      "tissu_somptueux": 1
+    },
+    "tier": 7,
+    "icon": "media/cloth/OpulentCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_baroque": {
+    "requires": {
+      "silver": 285,
+      "chanvre_fantome": 5,
+      "tissu_opulent": 1
+    },
+    "tier": 8,
+    "icon": "media/cloth/BaroqueCloth.png",
+    "category": "Tissu"
+  },
+
+  "coton": { "requires": {}, "tier": 2, "icon": "media/fiber/Cotton.png" },
+  "lin": { "requires": {}, "tier": 3, "icon": "media/fiber/Flax.png" },
+  "chanvre": { "requires": {}, "tier": 4, "icon": "media/fiber/Hemp.png" },
+  "vanillier_cayenne": { "requires": {}, "tier": 5, "icon": "media/fiber/Skyflower.png" },
+  "coton_ambre": { "requires": {}, "tier": 6, "icon": "media/fiber/AmberleafCotton.png" },
+  "lin_ensoleille": { "requires": {}, "tier": 7, "icon": "media/fiber/Sunflax.png" },
+  "chanvre_fantome": { "requires": {}, "tier": 8, "icon": "media/fiber/GhostHemp.png" },
+
   "tronc_bouleau": {"requires": {}, "tier": 2, "icon": "media/log/BirchLogs.png"},
   "tronc_chataignier": {"requires": {}, "tier": 3, "icon": "media/log/ChestnutLogs.png"},
   "tronc_pin": {"requires": {}, "tier": 4, "icon": "media/log/PineLogs.png"},
@@ -146,6 +223,7 @@
   "minerai_runite": { "requires": {}, "tier": 6, "icon": "media/ore/RuniteOre.png" },
   "minerai_meteorite": { "requires": {}, "tier": 7, "icon": "media/ore/MeteoriteOre.png" },
   "minerai_adamantine": { "requires": {}, "tier": 8, "icon": "media/ore/AdamantiumOre.png" },
+
 
   "silver": {"requires": {}, "icon": "media/Silver.png"}
 
