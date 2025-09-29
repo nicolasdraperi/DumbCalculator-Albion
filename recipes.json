@@ -46,12 +46,78 @@
       "planche_frene": 1
     }
   },
-  "tronc_chataignier": { "requires": {} },
-  "tronc_bouleau": { "requires": {} },
-  "tronc_pin": { "requires": {} },
-  "tronc_cedre": { "requires": {} },
-  "tronc_chene_rouge": { "requires": {} },
-  "tronc_frene": { "requires": {} },
-  "tronc_epicea": { "requires": {} },
-  "silver": { "requires": {} }
+
+  "barre_cuivre": {
+    "requires": {
+      "minerai_cuivre": 1
+    },
+    "tier": 2,
+    "icon": "media/ingot/CopperBar.png"
+  },
+  "barre_bronze": {
+    "requires": {
+      "minerai_etain": 2,
+      "barre_cuivre": 1
+    },
+    "tier": 3,
+    "icon": "media/ingot/BronzeBar.png"
+  },
+  "barre_acier": {
+    "requires": {
+      "minerai_fer": 2,
+      "barre_bronze": 1
+    },
+    "tier": 4,
+    "icon": "media/ingot/SteelBar.png"
+  },
+  "barre_titane": {
+    "requires": {
+      "minerai_titane": 3,
+      "barre_acier": 1
+    },
+    "tier": 5,
+    "icon": "media/ingot/TitaniumSteelBar.png"
+  },
+  "barre_runite": {
+    "requires": {
+      "minerai_runite": 4,
+      "barre_titane": 1
+    },
+    "tier": 6,
+    "icon": "media/ingot/RuniteSteelBar.png"
+  },
+  "barre_meteorite": {
+    "requires": {
+      "minerai_meteorite": 5,
+      "barre_runite": 1
+    },
+    "tier": 7,
+    "icon": "media/ingot/MeteoriteSteelBar.png"
+  },
+  "barre_adamantine": {
+    "requires": {
+      "minerai_adamantine": 5,
+      "barre_meteorite": 1
+    },
+    "tier": 8,
+    "icon": "media/ingot/AdamantiumSteelBar.png"
+  },
+  "tronc_bouleau": {"requires": {}, "tier": 2, "icon": "media/log/BirchLogs.png"},
+  "tronc_chataignier": {"requires": {}, "tier": 3, "icon": "media/log/ChestnutLogs.png"},
+  "tronc_pin": {"requires": {}, "tier": 4, "icon": "media/log/PineLogs.png"},
+  "tronc_cedre": {"requires": {}, "tier": 5, "icon": "media/log/CedarLogs.png"},
+  "tronc_chene_rouge": {"requires": {}, "tier": 6, "icon": "media/log/BloodoakLogs.png"},
+  "tronc_frene": {"requires": {}, "tier": 7, "icon": "media/log/WhitewoodLogs.png"},
+  "tronc_epicea": {"requires": {}, "tier": 8, "icon": "media/log/AshenbarkLogs.png"},
+
+  "minerai_cuivre": { "requires": {}, "tier": 2, "icon": "media/ore/CopperOre.png" },
+  "minerai_etain": { "requires": {}, "tier": 3, "icon": "media/ore/TinOre.png" },
+  "minerai_fer": { "requires": {}, "tier": 4, "icon": "media/ore/IronOre.png" },
+  "minerai_titane": { "requires": {}, "tier": 5, "icon": "media/ore/TitaniumOre.png" },
+  "minerai_runite": { "requires": {}, "tier": 6, "icon": "media/ore/RuniteOre.png" },
+  "minerai_meteorite": { "requires": {}, "tier": 7, "icon": "media/ore/MeteoriteOre.png" },
+  "minerai_adamantine": { "requires": {}, "tier": 8, "icon": "media/ore/AdamantiumOre.png" },
+
+  "silver": {"requires": {}, "icon": "media/Silver.png"}
+
 }

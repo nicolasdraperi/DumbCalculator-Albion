@@ -48,3 +48,44 @@ input, button {
 }
 
 
+/* === Tableau des totaux === */
+.totals-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #2b2b2b;   /* fond sombre */
+  color: #eee;           /* texte clair */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.totals-table th,
+.totals-table td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: center;
+}
+
+.totals-table th {
+  background: #3a3a3a;   /* gris plus clair pour l'entête */
+  color: #ffd700;        /* doré pour les titres */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.totals-table tr:nth-child(even) {
+  background: #333;      /* alternance de lignes */
+}
+
+.totals-table tr:hover {
+  background: #444;      /* survol plus clair */
+}
+
+.totals-table img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+
