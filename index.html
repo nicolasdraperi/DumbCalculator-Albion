@@ -7,23 +7,39 @@
 </head>
 <body>
 
-  <header>
-    <h1>Dumb Calculator</h1>
-    <p>Un calculateur pour Albion Online (En cour de construction)</p>
-  </header>
+<header>
+  <h1>Dumb Calculator</h1>
+  <p>Un calculateur pour Albion Online (En cours de construction)</p>
+</header>
+
+<!-- Filtres par catégorie -->
+<section id="filters"></section>
+
+<!-- Grille des items -->
+<table id="itemTable" class="item-table">
+  <thead>
+  <tr>
+    <th>Icône</th>
+    <th>Nom</th>
+    <th>Tier</th>
+    <th>Choisir</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
 
-  <div id="calculator">
-    <label for="item">Objet à crafter :</label>
-    <select id="item"></select>
-    <label for="quantity">Quantité :</label>
-    <input type="number" id="quantity" value="1" min="1">
+<!-- Choix de quantité + bouton calcul -->
+<div id="calculator">
+  <label for="quantity">Quantité :</label>
+  <input type="number" id="quantity" value="1" min="1">
+  <button id="calcBtn">Calculer</button>
+</div>
 
-    <button id="calcBtn">Calculer</button>
-  </div>
+<!-- Résultats -->
+<div id="result"></div>
 
-  <div id="result"></div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

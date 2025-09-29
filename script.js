@@ -1,22 +1,102 @@
 let recipes = {};
+let selectedItem = null;
 
+// -------------------------
+// 🔹 Charger les recettes
+// -------------------------
 async function loadRecipes() {
   const response = await fetch("recipes.json");
   recipes = await response.json();
-  populateDropdown();
+  populateFilters();
+  populateTable("all"); // afficher tout par défaut
 }
 
-function populateDropdown() {
-  const select = document.getElementById("item");
-  select.innerHTML = ""; // reset
+// -------------------------
+// 🔹 Génération des filtres
+// -------------------------
+function populateFilters() {
+  const filterContainer = document.getElementById("filters");
+  filterContainer.innerHTML = "";
+
+  const categories = new Set();
 
   for (let key in recipes) {
     const requirements = recipes[key].requires;
+    if (requirements && Object.keys(requirements).length > 0 && recipes[key].category) {
+      categories.add(recipes[key].category);
+    }
+  }
+
+  // bouton "Tout"
+  const allBtn = document.createElement("button");
+  allBtn.textContent = "Tout";
+  allBtn.addEventListener("click", () => populateTable("all"));
+  filterContainer.appendChild(allBtn);
+
+  // boutons par catégorie
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat;
+    btn.addEventListener("click", () => populateTable(cat));
+    filterContainer.appendChild(btn);
+  });
+}
+
+// -------------------------
+// 🔹 Tableau d’items
+// -------------------------
+function populateTable(category = "all") {
+  const tbody = document.querySelector("#itemTable tbody");
+  tbody.innerHTML = ""; // reset
+
+  for (let key in recipes) {
+    const requirements = recipes[key].requires;
+
     if (requirements && Object.keys(requirements).length > 0) {
-      const option = document.createElement("option");
-      option.value = key;
-      option.textContent = key.replace(/_/g, " ");
-      select.appendChild(option);
+      // si un filtre est actif, on skip les autres catégories
+      if (category !== "all" && recipes[key].category !== category) continue;
+
+      const tr = document.createElement("tr");
+
+      // Icône
+      const tdIcon = document.createElement("td");
+      if (recipes[key]?.icon) {
+        const img = document.createElement("img");
+        img.src = recipes[key].icon;
+        img.alt = key;
+        img.style.width = "40px";
+        img.style.height = "40px";
+        tdIcon.appendChild(img);
+      }
+      tr.appendChild(tdIcon);
+
+      // Nom
+      const tdName = document.createElement("td");
+      tdName.textContent = key.replace(/_/g, " ");
+      tr.appendChild(tdName);
+
+      // Tier
+      const tdTier = document.createElement("td");
+      tdTier.textContent = recipes[key]?.tier ? `Tier ${recipes[key].tier}` : "-";
+      tr.appendChild(tdTier);
+
+      // Radio choisir
+      const tdAction = document.createElement("td");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "selectedItem";
+      radio.classList.add("item-radio");
+      radio.value = key;
+
+      radio.addEventListener("change", () => {
+        selectedItem = key;
+        document.getElementById("quantity").value = 1;
+      });
+
+      tdAction.appendChild(radio);
+      tr.appendChild(tdAction);
+
+      tbody.appendChild(tr);
     }
   }
 }
@@ -28,7 +108,7 @@ function buildTree(item, quantity) {
   if (!recipes[item]) return null;
 
   const node = {
-    id: item, // garder la clé technique pour retrouver icône/tier
+    id: item,
     name: item.replace(/_/g, " "),
     quantity: quantity,
     children: []
@@ -40,10 +120,8 @@ function buildTree(item, quantity) {
     const needed = recipe[ingredient] * quantity;
 
     if (recipes[ingredient] && Object.keys(recipes[ingredient].requires).length > 0) {
-      // Recette craftable → descente récursive
       node.children.push(buildTree(ingredient, needed));
     } else {
-      // Ressource brute → feuille
       node.children.push({
         id: ingredient,
         name: ingredient.replace(/_/g, " "),
@@ -69,7 +147,7 @@ function calculateTotals(node, totals = {}) {
 }
 
 // -------------------------
-// 🔹 Affichage en cascade (arbre)
+// 🔹 Affichage arbre
 // -------------------------
 function displayTree(node, container) {
   const li = document.createElement("li");
@@ -85,13 +163,12 @@ function displayTree(node, container) {
 }
 
 // -------------------------
-// 🔹 Affichage des totaux (tableau)
+// 🔹 Affichage totaux
 // -------------------------
 function displayTotals(totals) {
   const table = document.createElement("table");
   table.classList.add("totals-table");
 
-  // en-tête
   const header = document.createElement("tr");
   ["Icône", "Nom de l'item", "Quantité", "Tier"].forEach(text => {
     const th = document.createElement("th");
@@ -100,11 +177,9 @@ function displayTotals(totals) {
   });
   table.appendChild(header);
 
-  // lignes
   for (let key in totals) {
     const tr = document.createElement("tr");
 
-    // icône
     const tdIcon = document.createElement("td");
     if (recipes[key]?.icon) {
       const img = document.createElement("img");
@@ -118,17 +193,14 @@ function displayTotals(totals) {
     }
     tr.appendChild(tdIcon);
 
-    // nom
     const tdName = document.createElement("td");
     tdName.textContent = key.replace(/_/g, " ");
     tr.appendChild(tdName);
 
-    // quantité
     const tdQty = document.createElement("td");
     tdQty.textContent = totals[key];
     tr.appendChild(tdQty);
 
-    // tier
     const tdTier = document.createElement("td");
     tdTier.textContent = recipes[key]?.tier ? `Tier ${recipes[key].tier}` : "-";
     tr.appendChild(tdTier);
@@ -140,22 +212,22 @@ function displayTotals(totals) {
 }
 
 // -------------------------
-// 🔹 Event bouton
+// 🔹 Event bouton calcul
 // -------------------------
 document.getElementById("calcBtn").addEventListener("click", () => {
-  const item = document.getElementById("item").value;
-  const quantity = parseInt(document.getElementById("quantity").value, 10);
+  if (!selectedItem) {
+    return; // rien choisi → rien à calculer
+  }
 
-  const root = buildTree(item, quantity);
+  const quantity = parseInt(document.getElementById("quantity").value, 10);
+  const root = buildTree(selectedItem, quantity);
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = "<h3>Ressources nécessaires :</h3>";
 
-  // arbre
   const ul = document.createElement("ul");
   displayTree(root, ul);
   resultDiv.appendChild(ul);
 
-  // totaux
   const totals = calculateTotals(root);
   const totalsDiv = document.createElement("div");
   totalsDiv.innerHTML = "<h3>Totaux bruts :</h3>";
