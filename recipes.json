@@ -200,7 +200,7 @@
     "category": "Tissu"
   },
 
-  "Cuir_raide": {
+  "cuir_raide": {
     "requires": {
       "peau_de_bete_resistante": 1
     },
@@ -208,7 +208,7 @@
     "category": "Cuir",
     "icon": "media/leather/StiffLeather.png"
   },
-  "Cuir_epais": {
+  "cuir_epais": {
     "requires": {
       "silver": 9,
       "peau_de_bete_fine": 2,
@@ -218,7 +218,7 @@
     "category": "Cuir",
     "icon": "media/leather/ThickLeather.png"
   },
-  "Cuir_travaille": {
+  "cuir_travaille": {
     "requires": {
       "silver": 18,
       "peau_de_bete_moyenne": 2,
@@ -228,7 +228,7 @@
     "category": "Cuir",
     "icon": "media/leather/WorkedLeather.png"
   },
-  "Cuir_traite": {
+  "cuir_traite": {
     "requires": {
       "silver": 36,
       "peau_de_bete_lourde": 3,
@@ -238,7 +238,7 @@
     "category": "Cuir",
     "icon": "media/leather/CuredLeather.png"
   },
-  "Cuir_durci": {
+  "cuir_durci": {
     "requires": {
       "silver": 72,
       "peau_de_bete_solide": 4,
@@ -248,7 +248,7 @@
     "category": "Cuir",
     "icon": "media/leather/HardenedLeather.png"
   },
-  "Cuir_renforce": {
+  "cuir_renforce": {
     "requires": {
       "silver": 144,
       "peau_de_bete_epaisse": 5,
@@ -258,10 +258,10 @@
     "category": "Cuir",
     "icon": "media/leather/ReinforcedLeather.png"
   },
-  "Cuir_fortifie": {
+  "cuir_fortifie": {
     "requires": {
       "silver": 288,
-      "peau_de_bete_resistanteT8": 5,
+      "peau_de_bete_resistante_t8": 5,
       "Cuir_renforce": 1
     },
     "tier": 8,
@@ -275,7 +275,7 @@
   "peau_de_bete_lourde": {"requires": {}, "tier": 5, "icon": "media/hide/HeavyHide.png"},
   "peau_de_bete_solide": {"requires": {}, "tier": 6, "icon": "media/hide/RobustHide.png"},
   "peau_de_bete_epaisse": {"requires": {}, "tier": 7, "icon": "media/hide/ThickHide.png"},
-  "peau_de_bete_resistanteT8": {"requires": {}, "tier": 8, "icon": "media/hide/ResilientHide.png"},
+  "peau_de_bete_resistante_t8": {"requires": {}, "tier": 8, "icon": "media/hide/ResilientHide.png"},
 
   "coton": { "requires": {}, "tier": 2, "icon": "media/fiber/Cotton.png" },
   "lin": { "requires": {}, "tier": 3, "icon": "media/fiber/Flax.png" },
