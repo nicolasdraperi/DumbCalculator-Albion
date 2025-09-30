@@ -200,6 +200,83 @@
     "category": "Tissu"
   },
 
+  "Cuir_raide": {
+    "requires": {
+      "peau_de_bete_resistante": 1
+    },
+    "tier": 2,
+    "category": "Cuir",
+    "icon": "media/leather/StiffLeather.png"
+  },
+  "Cuir_epais": {
+    "requires": {
+      "silver": 9,
+      "peau_de_bete_fine": 2,
+      "Cuir_raide": 1
+    },
+    "tier": 3,
+    "category": "Cuir",
+    "icon": "media/leather/ThickLeather.png"
+  },
+  "Cuir_travaille": {
+    "requires": {
+      "silver": 18,
+      "peau_de_bete_moyenne": 2,
+      "Cuir_epais": 1
+    },
+    "tier": 4,
+    "category": "Cuir",
+    "icon": "media/leather/WorkedLeather.png"
+  },
+  "Cuir_traite": {
+    "requires": {
+      "silver": 36,
+      "peau_de_bete_lourde": 3,
+      "Cuir_travaille": 1
+    },
+    "tier": 5,
+    "category": "Cuir",
+    "icon": "media/leather/CuredLeather.png"
+  },
+  "Cuir_durci": {
+    "requires": {
+      "silver": 72,
+      "peau_de_bete_solide": 4,
+      "Cuir_traite": 1
+    },
+    "tier": 6,
+    "category": "Cuir",
+    "icon": "media/leather/HardenedLeather.png"
+  },
+  "Cuir_renforce": {
+    "requires": {
+      "silver": 144,
+      "peau_de_bete_epaisse": 5,
+      "Cuir_durci": 1
+    },
+    "tier": 7,
+    "category": "Cuir",
+    "icon": "media/leather/ReinforcedLeather.png"
+  },
+  "Cuir_fortifie": {
+    "requires": {
+      "silver": 288,
+      "peau_de_bete_resistanteT8": 5,
+      "Cuir_renforce": 1
+    },
+    "tier": 8,
+    "category": "Cuir",
+    "icon": "media/leather/FortifiedLeather.png"
+  },
+
+  "peau_de_bete_resistante": {"requires": {}, "tier": 2, "icon": "media/hide/RuggedHide.png"},
+  "peau_de_bete_fine": {"requires": {}, "tier": 3, "icon": "media/hide/ThinHide.png"},
+  "peau_de_bete_moyenne": {"requires": {}, "tier": 4, "icon": "media/hide/MediumHide.png"},
+  "peau_de_bete_lourde": {"requires": {}, "tier": 5, "icon": "media/hide/HeavyHide.png"},
+  "peau_de_bete_solide": {"requires": {}, "tier": 6, "icon": "media/hide/RobustHide.png"},
+  "peau_de_bete_epaisse": {"requires": {}, "tier": 7, "icon": "media/hide/ThickHide.png"},
+  "peau_de_bete_resistanteT8": {"requires": {}, "tier": 8, "icon": "media/hide/ResilientHide.png"},
+
   "coton": { "requires": {}, "tier": 2, "icon": "media/fiber/Cotton.png" },
   "lin": { "requires": {}, "tier": 3, "icon": "media/fiber/Flax.png" },
   "chanvre": { "requires": {}, "tier": 4, "icon": "media/fiber/Hemp.png" },
