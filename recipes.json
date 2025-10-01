@@ -212,7 +212,7 @@
     "requires": {
       "silver": 9,
       "peau_de_bete_fine": 2,
-      "Cuir_raide": 1
+      "cuir_raide": 1
     },
     "tier": 3,
     "category": "Cuir",
@@ -222,7 +222,7 @@
     "requires": {
       "silver": 18,
       "peau_de_bete_moyenne": 2,
-      "Cuir_epais": 1
+      "cuir_epais": 1
     },
     "tier": 4,
     "category": "Cuir",
@@ -232,7 +232,7 @@
     "requires": {
       "silver": 36,
       "peau_de_bete_lourde": 3,
-      "Cuir_travaille": 1
+      "cuir_travaille": 1
     },
     "tier": 5,
     "category": "Cuir",
@@ -242,7 +242,7 @@
     "requires": {
       "silver": 72,
       "peau_de_bete_solide": 4,
-      "Cuir_traite": 1
+      "cuir_traite": 1
     },
     "tier": 6,
     "category": "Cuir",
@@ -252,7 +252,7 @@
     "requires": {
       "silver": 144,
       "peau_de_bete_epaisse": 5,
-      "Cuir_durci": 1
+      "cuir_durci": 1
     },
     "tier": 7,
     "category": "Cuir",
@@ -262,7 +262,7 @@
     "requires": {
       "silver": 288,
       "peau_de_bete_resistante_t8": 5,
-      "Cuir_renforce": 1
+      "cuir_renforce": 1
     },
     "tier": 8,
     "category": "Cuir",
