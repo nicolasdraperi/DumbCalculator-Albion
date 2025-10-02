@@ -1,5 +1,7 @@
 let recipes = {};
 let selectedItem = null;
+let currentCategory = "all";
+let currentTier = "all";
 
 // -------------------------
 // 🔹 Charger les recettes
@@ -8,11 +10,12 @@ async function loadRecipes() {
   const response = await fetch("recipes.json");
   recipes = await response.json();
   populateFilters();
-  populateTable("all"); // afficher tout par défaut
+  populateTierFilter();
+  populateTable(); // afficher tout par défaut
 }
 
 // -------------------------
-// 🔹 Génération des filtres
+// 🔹 Génération des filtres par catégorie
 // -------------------------
 function populateFilters() {
   const filterContainer = document.getElementById("filters");
@@ -30,31 +33,80 @@ function populateFilters() {
   // bouton "Tout"
   const allBtn = document.createElement("button");
   allBtn.textContent = "Tout";
-  allBtn.addEventListener("click", () => populateTable("all"));
+  allBtn.addEventListener("click", () => {
+    currentCategory = "all";
+    populateTable();
+  });
   filterContainer.appendChild(allBtn);
 
   // boutons par catégorie
   categories.forEach(cat => {
     const btn = document.createElement("button");
     btn.textContent = cat;
-    btn.addEventListener("click", () => populateTable(cat));
+    btn.addEventListener("click", () => {
+      currentCategory = cat;
+      populateTable();
+    });
     filterContainer.appendChild(btn);
   });
 }
 
 // -------------------------
+// 🔹 Génération du filtre par tier
+// -------------------------
+function populateTierFilter() {
+  const tierContainer = document.getElementById("tierFilter");
+  tierContainer.innerHTML = ""; // reset pour éviter les doublons
+
+  const label = document.createElement("label");
+  label.setAttribute("for", "tierSelect");
+  label.textContent = "Filtrer par Tier : ";
+  label.style.marginRight = "8px";
+  tierContainer.appendChild(label);
+
+  const select = document.createElement("select");
+  select.id = "tierSelect";
+
+  // option "Tous"
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "Tous";
+  select.appendChild(allOption);
+
+  // options T2 → T8
+  for (let i = 2; i <= 8; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `Tier ${i}`;
+    select.appendChild(opt);
+  }
+
+  select.addEventListener("change", () => {
+    currentTier = select.value;
+    populateTable();
+  });
+
+  tierContainer.appendChild(select);
+}
+
+// -------------------------
 // 🔹 Tableau d’items
 // -------------------------
-function populateTable(category = "all") {
+function populateTable() {
   const tbody = document.querySelector("#itemTable tbody");
   tbody.innerHTML = ""; // reset
 
   for (let key in recipes) {
     const requirements = recipes[key].requires;
+    const recipeTier = recipes[key]?.tier;
 
     if (requirements && Object.keys(requirements).length > 0) {
-      // si un filtre est actif, on skip les autres catégories
-      if (category !== "all" && recipes[key].category !== category) continue;
+      // filtre par catégorie
+      if (currentCategory !== "all" && recipes[key].category !== currentCategory) continue;
+
+      // filtre par tier
+      if (currentTier !== "all" && recipeTier !== parseInt(currentTier, 10)) continue;
+
 
       const tr = document.createElement("tr");
 
@@ -77,7 +129,7 @@ function populateTable(category = "all") {
 
       // Tier
       const tdTier = document.createElement("td");
-      tdTier.textContent = recipes[key]?.tier ? `Tier ${recipes[key].tier}` : "-";
+      tdTier.textContent = recipeTier ? `Tier ${recipeTier}` : "-";
       tr.appendChild(tdTier);
 
       // Radio choisir
@@ -215,9 +267,7 @@ function displayTotals(totals) {
 // 🔹 Event bouton calcul
 // -------------------------
 document.getElementById("calcBtn").addEventListener("click", () => {
-  if (!selectedItem) {
-    return; // rien choisi → rien à calculer
-  }
+  if (!selectedItem) return;
 
   const quantity = parseInt(document.getElementById("quantity").value, 10);
   const root = buildTree(selectedItem, quantity);
@@ -235,6 +285,27 @@ document.getElementById("calcBtn").addEventListener("click", () => {
   resultDiv.appendChild(totalsDiv);
 });
 
+// -------------------------
+// 🔹 Barre de recherche
+// -------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("search");
+  const table = document.getElementById("itemTable");
+  const tbody = table.querySelector("tbody");
+
+  searchInput.addEventListener("input", () => {
+    const filter = searchInput.value.toLowerCase();
+    const rows = tbody.getElementsByTagName("tr");
+
+    for (let row of rows) {
+      const nameCell = row.cells[1];
+      if (nameCell) {
+        const txtValue = nameCell.textContent || nameCell.innerText;
+        row.style.display = txtValue.toLowerCase().includes(filter) ? "" : "none";
+      }
+    }
+  });
+});
 // -------------------------
 // 🔹 Charger au démarrage
 // -------------------------

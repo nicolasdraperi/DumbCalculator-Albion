@@ -131,6 +131,160 @@
     "category": "Lingot"
   },
 
+  "morceau_tissu": {
+    "requires": {
+      "coton": 1
+    },
+    "tier": 2,
+    "icon": "media/cloth/SimpleCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_propre": {
+    "requires": {
+      "silver": 9,
+      "lin": 2,
+      "morceau_tissu": 1
+    },
+    "tier": 3,
+    "icon": "media/cloth/NeatCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_delicat": {
+    "requires": {
+      "silver": 18,
+      "chanvre": 2,
+      "tissu_propre": 1
+    },
+    "tier": 4,
+    "icon": "media/cloth/FineCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_ouvrage": {
+    "requires": {
+      "silver": 36,
+      "vanillier_cayenne": 3,
+      "tissu_delicat": 1
+    },
+    "tier": 5,
+    "icon": "media/cloth/OrnateCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_somptueux": {
+    "requires": {
+      "silver": 71,
+      "coton_ambre": 4,
+      "tissu_ouvrage": 1
+    },
+    "tier": 6,
+    "icon": "media/cloth/LavishCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_opulent": {
+    "requires": {
+      "silver": 143,
+      "lin_ensoleille": 5,
+      "tissu_somptueux": 1
+    },
+    "tier": 7,
+    "icon": "media/cloth/OpulentCloth.png",
+    "category": "Tissu"
+  },
+  "tissu_baroque": {
+    "requires": {
+      "silver": 285,
+      "chanvre_fantome": 5,
+      "tissu_opulent": 1
+    },
+    "tier": 8,
+    "icon": "media/cloth/BaroqueCloth.png",
+    "category": "Tissu"
+  },
+
+  "cuir_raide": {
+    "requires": {
+      "peau_de_bete_resistante": 1
+    },
+    "tier": 2,
+    "category": "Cuir",
+    "icon": "media/leather/StiffLeather.png"
+  },
+  "cuir_epais": {
+    "requires": {
+      "silver": 9,
+      "peau_de_bete_fine": 2,
+      "cuir_raide": 1
+    },
+    "tier": 3,
+    "category": "Cuir",
+    "icon": "media/leather/ThickLeather.png"
+  },
+  "cuir_travaille": {
+    "requires": {
+      "silver": 18,
+      "peau_de_bete_moyenne": 2,
+      "cuir_epais": 1
+    },
+    "tier": 4,
+    "category": "Cuir",
+    "icon": "media/leather/WorkedLeather.png"
+  },
+  "cuir_traite": {
+    "requires": {
+      "silver": 36,
+      "peau_de_bete_lourde": 3,
+      "cuir_travaille": 1
+    },
+    "tier": 5,
+    "category": "Cuir",
+    "icon": "media/leather/CuredLeather.png"
+  },
+  "cuir_durci": {
+    "requires": {
+      "silver": 72,
+      "peau_de_bete_solide": 4,
+      "cuir_traite": 1
+    },
+    "tier": 6,
+    "category": "Cuir",
+    "icon": "media/leather/HardenedLeather.png"
+  },
+  "cuir_renforce": {
+    "requires": {
+      "silver": 144,
+      "peau_de_bete_epaisse": 5,
+      "cuir_durci": 1
+    },
+    "tier": 7,
+    "category": "Cuir",
+    "icon": "media/leather/ReinforcedLeather.png"
+  },
+  "cuir_fortifie": {
+    "requires": {
+      "silver": 288,
+      "peau_de_bete_resistante_t8": 5,
+      "cuir_renforce": 1
+    },
+    "tier": 8,
+    "category": "Cuir",
+    "icon": "media/leather/FortifiedLeather.png"
+  },
+
+  "peau_de_bete_resistante": {"requires": {}, "tier": 2, "icon": "media/hide/RuggedHide.png"},
+  "peau_de_bete_fine": {"requires": {}, "tier": 3, "icon": "media/hide/ThinHide.png"},
+  "peau_de_bete_moyenne": {"requires": {}, "tier": 4, "icon": "media/hide/MediumHide.png"},
+  "peau_de_bete_lourde": {"requires": {}, "tier": 5, "icon": "media/hide/HeavyHide.png"},
+  "peau_de_bete_solide": {"requires": {}, "tier": 6, "icon": "media/hide/RobustHide.png"},
+  "peau_de_bete_epaisse": {"requires": {}, "tier": 7, "icon": "media/hide/ThickHide.png"},
+  "peau_de_bete_resistante_t8": {"requires": {}, "tier": 8, "icon": "media/hide/ResilientHide.png"},
+
+  "coton": { "requires": {}, "tier": 2, "icon": "media/fiber/Cotton.png" },
+  "lin": { "requires": {}, "tier": 3, "icon": "media/fiber/Flax.png" },
+  "chanvre": { "requires": {}, "tier": 4, "icon": "media/fiber/Hemp.png" },
+  "vanillier_cayenne": { "requires": {}, "tier": 5, "icon": "media/fiber/Skyflower.png" },
+  "coton_ambre": { "requires": {}, "tier": 6, "icon": "media/fiber/AmberleafCotton.png" },
+  "lin_ensoleille": { "requires": {}, "tier": 7, "icon": "media/fiber/Sunflax.png" },
+  "chanvre_fantome": { "requires": {}, "tier": 8, "icon": "media/fiber/GhostHemp.png" },
+
   "tronc_bouleau": {"requires": {}, "tier": 2, "icon": "media/log/BirchLogs.png"},
   "tronc_chataignier": {"requires": {}, "tier": 3, "icon": "media/log/ChestnutLogs.png"},
   "tronc_pin": {"requires": {}, "tier": 4, "icon": "media/log/PineLogs.png"},
@@ -146,6 +300,7 @@
   "minerai_runite": { "requires": {}, "tier": 6, "icon": "media/ore/RuniteOre.png" },
   "minerai_meteorite": { "requires": {}, "tier": 7, "icon": "media/ore/MeteoriteOre.png" },
   "minerai_adamantine": { "requires": {}, "tier": 8, "icon": "media/ore/AdamantiumOre.png" },
+
 
   "silver": {"requires": {}, "icon": "media/Silver.png"}
 

@@ -7,21 +7,91 @@ body {
   padding: 20px;
 }
 
-header {
-  margin-bottom: 20px;
+header.banner {
+  background: url("media/banner.png") no-repeat center center;
+  background-size: contain;       /* toujours 100% visible */   /* couleur de fond pour remplir autour */
+
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 40px 20px;
+  color: white;
+  border-bottom: 3px solid #a52a2a;
 }
 
+/* Titre */
+header.banner h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: #ffd700;
+  text-shadow: 2px 2px 6px #000;
+}
+
+/* Sous-titre */
+header.banner p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #fff8dc;
+}
+
+/* === Bloc calcul === */
 #calculator {
   margin: 20px auto;
-  padding: 15px;
-  background: #333;
-  border-radius: 10px;
-  width: 300px;
+  padding: 20px;
+  background: #2b2b2b;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-input, button {
-  margin: 5px;
-  padding: 5px;
+#calculator label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #ffd700; /* jaune doré pour rappeler l’entête */
+}
+
+#calculator input[type="number"] {
+  width: 100px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1e1e1e;
+  color: #eee;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: border 0.2s;
+}
+
+#calculator input[type="number"]:focus {
+  border: 1px solid #ffd700;
+  outline: none;
+}
+
+#calculator button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#calculator button:hover {
+  background: #666;
+}
+
+#calculator button:active {
+  transform: scale(0.95);
 }
 
 /* === Résultats en arbre === */
@@ -173,3 +243,105 @@ input, button {
 .item-radio:hover {
   border-color: #fff;
 }
+
+/* === Filtre Tier === */
+#tierFilter {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#tierFilter label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #ffd700;
+}
+
+#tierFilter select {
+  appearance: none; /* supprime le style natif */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  /* icône custom ▼ */
+  background: #2b2b2b url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.4' height='292.4'%3E%3Cpath fill='%23ffd700' d='M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 128c3.6 3.6 7.8 5.4 12.9 5.4s9.3-1.8 12.9-5.4l128-128a17.6 17.6 0 0 0 5.4-12.9c0-5-1.8-9.2-5.4-12.8z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 12px;
+  /* espace pour la flèche */
+  padding: 8px 30px 8px 12px;
+}
+
+#tierFilter select:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}
+
+#tierFilter select:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 6px #ffd70055;
+  outline: none;
+}
+
+#tierFilter option {
+  background: #2b2b2b;
+  color: #eee;
+  padding: 8px;
+}
+
+/* Conteneur global filtres + tier + recherche */
+#filtersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* tout centré */
+  gap: 20px; /* espace uniforme entre chaque bloc */
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+/* Chaque sous-bloc reste aligné proprement */
+#filters,
+#tierFilter,
+#searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Label recherche */
+#searchBar label {
+  font-weight: bold;
+  color: #ffd700;
+  margin: 0;
+}
+
+/* Champ recherche */
+#searchBar input {
+  background: #2b2b2b;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 6px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+#searchBar input::placeholder {
+  color: #aaa;
+}
+
+#searchBar input:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}
+
+#searchBar input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 6px #ffd70055;
+  outline: none;
+}
+
+
