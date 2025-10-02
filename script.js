@@ -286,6 +286,27 @@ document.getElementById("calcBtn").addEventListener("click", () => {
 });
 
 // -------------------------
+// 🔹 Barre de recherche
+// -------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("search");
+  const table = document.getElementById("itemTable");
+  const tbody = table.querySelector("tbody");
+
+  searchInput.addEventListener("input", () => {
+    const filter = searchInput.value.toLowerCase();
+    const rows = tbody.getElementsByTagName("tr");
+
+    for (let row of rows) {
+      const nameCell = row.cells[1];
+      if (nameCell) {
+        const txtValue = nameCell.textContent || nameCell.innerText;
+        row.style.display = txtValue.toLowerCase().includes(filter) ? "" : "none";
+      }
+    }
+  });
+});
+// -------------------------
 // 🔹 Charger au démarrage
 // -------------------------
 loadRecipes();

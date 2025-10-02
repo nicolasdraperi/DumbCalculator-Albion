@@ -7,6 +7,37 @@ body {
   padding: 20px;
 }
 
+header.banner {
+  background: url("media/banner.png") no-repeat center center;
+  background-size: contain;       /* toujours 100% visible */   /* couleur de fond pour remplir autour */
+
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 40px 20px;
+  color: white;
+  border-bottom: 3px solid #a52a2a;
+}
+
+/* Titre */
+header.banner h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: #ffd700;
+  text-shadow: 2px 2px 6px #000;
+}
+
+/* Sous-titre */
+header.banner p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #fff8dc;
+}
+
 /* === Bloc calcul === */
 #calculator {
   margin: 20px auto;
@@ -261,38 +292,56 @@ body {
   padding: 8px;
 }
 
-header.banner {
-  background: url("media/banner.png") no-repeat center center;
-  background-size: contain;       /* toujours 100% visible */   /* couleur de fond pour remplir autour */
-
-  min-height: 220px;
+/* Conteneur global filtres + tier + recherche */
+#filtersContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-
-  padding: 40px 20px;
-  color: white;
-  border-bottom: 3px solid #a52a2a;
+  justify-content: center; /* tout centré */
+  gap: 20px; /* espace uniforme entre chaque bloc */
+  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
-/* Titre */
-header.banner h1 {
-  font-size: 2.8rem;
-  margin: 0;
+/* Chaque sous-bloc reste aligné proprement */
+#filters,
+#tierFilter,
+#searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Label recherche */
+#searchBar label {
+  font-weight: bold;
   color: #ffd700;
-  text-shadow: 2px 2px 6px #000;
+  margin: 0;
 }
 
-/* Sous-titre */
-header.banner p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  color: #fff8dc;
+/* Champ recherche */
+#searchBar input {
+  background: #2b2b2b;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 6px 10px;
+  transition: all 0.2s ease-in-out;
 }
 
+#searchBar input::placeholder {
+  color: #aaa;
+}
 
+#searchBar input:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}
 
+#searchBar input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 6px #ffd70055;
+  outline: none;
+}
 
 
