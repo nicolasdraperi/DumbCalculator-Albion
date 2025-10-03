@@ -269,39 +269,458 @@
     "icon": "media/leather/FortifiedLeather.png"
   },
 
-  "axe_t4": {
-    "requires": {
-      "cuir_fortifie": 12
-    },
-    "tier": 4,
-    "category": "Outil",
-    "subCategory": "Hache",
-    "icon": "media/silver.png"
+  "hache_de_l'apprenti": {
+  "requires": {
+    "planche_bouleau": 6,
+    "barre_cuivre": 2
   },
-  "axe_t5": {
-    "requires": {"cuir_fortifie": 12},
-    "tier": 5,
-    "category": "Outil",
-    "subCategory": "Hache",
-    "icon": "media/silver.png"
+  "tier": 2,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Novice'sAxe.png"
   },
-  "Pioche _t4": {
-    "requires": {
-      "barre_runite": 2,
-      "planche_chene_rouge": 6
-    },
-    "tier": 4,
-    "category": "Outil",
-    "subCategory": "Pioche",
-    "icon": "media/silver.png"
+  "hache_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "barre_bronze": 2
   },
-  "pickaxe_t5": {
-    "requires": {"cuir_fortifie": 12},
-    "tier": 5,
-    "category": "Outil",
-    "subCategory": "Pioche",
-    "icon": "media/silver.png"
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Journeyman'sAxe.png"
   },
+  "hache_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "barre_acier": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Adept'sAxe.png"
+  },
+  "hache_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "barre_titane": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Expert'sAxe.png"
+  },
+  "hache_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "barre_runite": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Master'sAxe.png"
+  },
+  "hache_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "barre_meteorite": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Grandmaster'sAxe.png"
+  },
+  "hache_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "barre_adamantine": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Hache",
+  "icon": "media/tools/axe/Elder'sAxe.png"
+  },
+
+  "pioche_de_l'apprenti": { 
+  "requires": {
+    "planche_bouleau": 6,
+    "barre_cuivre": 2
+  },
+  "tier": 2,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Novice'sPickaxe.png"
+  },
+  "pioche_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "barre_bronze": 2
+  },
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Journeyman'sPickaxe.png"
+  },
+  "pioche_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "barre_acier": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Adept'sPickaxe.png"
+  },
+  "pioche_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "barre_titane": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Expert'sPickaxe.png"
+  },
+  "pioche_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "barre_runite": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Master'sPickaxe.png"
+  },
+  "pioche_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "barre_meteorite": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Grandmaster'sPickaxe.png"
+  },
+  "pioche_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "barre_adamantine": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Pioche",
+  "icon": "media/tools/pickaxe/Elder'sPickaxe.png"
+  },
+
+  "couteau_a_depecer_de_l'apprenti": { 
+  "requires": {
+    "planche_bouleau": 6,
+    "barre_cuivre": 2
+  },
+  "tier": 2,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Novice'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "barre_bronze": 2
+  },
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Journeyman'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "barre_acier": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Adept'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "barre_titane": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Expert'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "barre_runite": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Master'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "barre_meteorite": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Grandmaster'sSkinningKnife.png"
+  },
+  "couteau_a_depecer_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "barre_adamantine": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Couteau",
+  "icon": "media/tools/knife/Elder'sSkinningKnife.png"
+  },
+
+  "faucille_de_l'apprenti": { 
+  "requires": {
+    "planche_bouleau": 6,
+    "barre_cuivre": 2
+  },
+  "tier": 2,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Novice'sSickle.png"
+  },
+  "faucille_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "barre_bronze": 2
+  },
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Journeyman'sSickle.png"
+  },
+  "faucille_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "barre_acier": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Adept'sSickle.png"
+  },
+  "faucille_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "barre_titane": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Expert'sSickle.png"
+  },
+  "faucille_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "barre_runite": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Master'sSickle.png"
+  },
+  "faucille_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "barre_meteorite": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Grandmaster'sSickle.png"
+  },
+  "faucille_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "barre_adamantine": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Faucille",
+  "icon": "media/tools/sickle/Elder'sSickle.png"
+  },
+
+  "masse_de_pierre_de_l'apprenti": { 
+  "requires": {
+    "planche_bouleau": 6,
+    "barre_cuivre": 2
+  },
+  "tier": 2,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Novice'sStoneHammer.png"
+  },
+  "masse_de_pierre_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "barre_bronze": 2
+  },
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Journeyman'sStoneHammer.png"
+  },
+  "masse_de_pierre_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "barre_acier": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Adept'sStoneHammer.png"
+  },
+  "masse_de_pierre_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "barre_titane": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Expert'sStoneHammer.png"
+  },
+  "masse_de_pierre_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "barre_runite": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Master'sStoneHammer.png"
+  },
+  "masse_de_pierre_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "barre_meteorite": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Grandmaster'sStoneHammer.png"
+  },
+  "masse_de_pierre_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "barre_adamantine": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Marteau",
+  "icon": "media/tools/hammer/Elder'sStoneHammer.png"
+  },
+
+  "canne_a_peche_du_compagnon": {
+  "requires": {
+    "silver": 68,
+    "planche_chataignier": 6,
+    "tissu_propre": 2
+  },
+  "tier": 3,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Journeyman'sFishingRod.png"
+  },
+  "canne_a_peche_de_l'adepte": {
+  "requires": {
+    "silver": 135,
+    "planche_pin": 6,
+    "tissu_delicat": 2
+  },
+  "tier": 4,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Adept'sFishingRod.png"
+  },
+  "canne_a_peche_de_l'expert": {
+  "requires": {
+    "silver": 271,
+    "planche_cedre": 6,
+    "tissu_ouvrage": 2
+  },
+  "tier": 5,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Expert'sFishingRod.png"
+  },
+  "canne_a_peche_du_maitre": {
+  "requires": {
+    "silver": 541,
+    "planche_chene_rouge": 6,
+    "tissu_somptueux": 2
+  },
+  "tier": 6,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Master'sFishingRod.png"
+  },
+  "canne_a_peche_du_grand_maitre": {
+  "requires": {
+    "silver": 1083,
+    "planche_frene": 6,
+    "tissu_opulent": 2
+  },
+  "tier": 7,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Grandmaster'sFishingRod.png"
+  },
+  "canne_a_peche_du_sage": {
+  "requires": {
+    "silver": 2166,
+    "planche_epicea": 6,
+    "tissu_baroque": 2
+  },
+  "tier": 8,
+  "category": "Outil",
+  "subCategory": "Canne à pêche",
+  "icon": "media/tools/fishingrod/Elder'sFishingRod.png"
+  },
+
 
   "peau_de_bete_resistante": {"requires": {}, "tier": 2, "icon": "media/hide/RuggedHide.png"},
   "peau_de_bete_fine": {"requires": {}, "tier": 3, "icon": "media/hide/ThinHide.png"},
