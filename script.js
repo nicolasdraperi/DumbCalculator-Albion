@@ -2,6 +2,8 @@ let recipes = {};
 let selectedItem = null;
 let currentCategory = "all";
 let currentTier = "all";
+let currentSubCategory = "all"; // pour outils
+
 
 // -------------------------
 // 🔹 Charger les recettes
@@ -43,12 +45,26 @@ function populateFilters() {
   categories.forEach(cat => {
     const btn = document.createElement("button");
     btn.textContent = cat;
-    btn.addEventListener("click", () => {
-      currentCategory = cat;
-      populateTable();
-    });
+
+    if (cat.toLowerCase() !== "outil") {
+      btn.addEventListener("click", () => {
+        currentCategory = cat.toLowerCase();
+        currentSubCategory = "all";
+        populateTable();
+      });
+    } else {
+      btn.addEventListener("click", (e) => {
+        // juste ouvrir/fermer le menu dropdown
+        const r = btn.getBoundingClientRect();
+        toolSubmenu.style.left = `${r.left + window.scrollX}px`;
+        toolSubmenu.style.top = `${r.bottom + window.scrollY + 6}px`;
+        toolSubmenu.style.display = toolSubmenu.style.display === "block" ? "none" : "block";
+      });
+    }
+
     filterContainer.appendChild(btn);
   });
+
 }
 
 // -------------------------
@@ -102,7 +118,15 @@ function populateTable() {
 
     if (requirements && Object.keys(requirements).length > 0) {
       // filtre par catégorie
-      if (currentCategory !== "all" && recipes[key].category !== currentCategory) continue;
+      if (currentCategory !== "all" && recipes[key].category.toLowerCase() !== currentCategory) continue;
+
+      // filtre sous-catégorie outils
+      if (currentCategory === "outil" && currentSubCategory !== "all") {
+        const sub = (recipes[key].subCategory || "").toLowerCase();
+        if (sub !== currentSubCategory.toLowerCase()) continue;
+      }
+
+
 
       // filtre par tier
       if (currentTier !== "all" && recipeTier !== parseInt(currentTier, 10)) continue;
@@ -306,6 +330,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// -------------------------
+// 🔹 Gestion du sous-menu Outils
+// -------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const toolSubmenu = document.getElementById("toolSubmenu");
+
+  toolSubmenu.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+
+    currentCategory = "outil";
+    currentSubCategory = b.getAttribute("data-sub"); // doit matcher ton JSON
+    toolSubmenu.style.display = "none";
+    populateTable();
+  });
+
+});
+
 // -------------------------
 // 🔹 Charger au démarrage
 // -------------------------
