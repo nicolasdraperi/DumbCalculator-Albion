@@ -269,6 +269,40 @@
     "icon": "media/leather/FortifiedLeather.png"
   },
 
+  "axe_t4": {
+    "requires": {
+      "cuir_fortifie": 12
+    },
+    "tier": 4,
+    "category": "Outil",
+    "subCategory": "Hache",
+    "icon": "media/silver.png"
+  },
+  "axe_t5": {
+    "requires": {"cuir_fortifie": 12},
+    "tier": 5,
+    "category": "Outil",
+    "subCategory": "Hache",
+    "icon": "media/silver.png"
+  },
+  "Pioche _t4": {
+    "requires": {
+      "barre_runite": 2,
+      "planche_chene_rouge": 6
+    },
+    "tier": 4,
+    "category": "Outil",
+    "subCategory": "Pioche",
+    "icon": "media/silver.png"
+  },
+  "pickaxe_t5": {
+    "requires": {"cuir_fortifie": 12},
+    "tier": 5,
+    "category": "Outil",
+    "subCategory": "Pioche",
+    "icon": "media/silver.png"
+  },
+
   "peau_de_bete_resistante": {"requires": {}, "tier": 2, "icon": "media/hide/RuggedHide.png"},
   "peau_de_bete_fine": {"requires": {}, "tier": 3, "icon": "media/hide/ThinHide.png"},
   "peau_de_bete_moyenne": {"requires": {}, "tier": 4, "icon": "media/hide/MediumHide.png"},
