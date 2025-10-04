@@ -78,6 +78,7 @@
   },
   "barre_bronze": {
     "requires": {
+      "silver": 9,
       "minerai_etain": 2,
       "barre_cuivre": 1
     },
@@ -87,6 +88,7 @@
   },
   "barre_acier": {
     "requires": {
+      "silver": 18,
       "minerai_fer": 2,
       "barre_bronze": 1
     },
@@ -96,6 +98,7 @@
   },
   "barre_titane": {
     "requires": {
+      "silver": 36,
       "minerai_titane": 3,
       "barre_acier": 1
     },
@@ -105,6 +108,7 @@
   },
   "barre_runite": {
     "requires": {
+      "silver": 71,
       "minerai_runite": 4,
       "barre_titane": 1
     },
@@ -114,6 +118,7 @@
   },
   "barre_meteorite": {
     "requires": {
+      "silver": 143,
       "minerai_meteorite": 5,
       "barre_runite": 1
     },
@@ -123,6 +128,7 @@
   },
   "barre_adamantine": {
     "requires": {
+      "silver": 285,
       "minerai_adamantine": 5,
       "barre_meteorite": 1
     },
