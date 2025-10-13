@@ -9,11 +9,18 @@ let currentSubCategory = "all"; // pour outils
 // 🔹 Charger les recettes
 // -------------------------
 async function loadRecipes() {
-  const response = await fetch("recipes.json");
-  recipes = await response.json();
-  populateFilters();
-  populateTierFilter();
-  populateTable(); // afficher tout par défaut
+  try {
+    const response = await fetch("recipes.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    recipes = await response.json();
+    populateFilters();
+    populateTierFilter();
+    populateTable();
+  } catch (err) {
+    console.error("Impossible de charger recipes.json:", err);
+    document.getElementById("result").innerHTML =
+        "<p style='color:#ff8080'>Erreur de chargement des recettes.</p>";
+  }
 }
 
 // -------------------------
@@ -23,6 +30,7 @@ function populateFilters() {
   const filterContainer = document.getElementById("filters");
   filterContainer.innerHTML = "";
 
+  const toolSubmenu = document.getElementById("toolSubmenu");
   const categories = new Set();
 
   for (let key in recipes) {
@@ -53,7 +61,7 @@ function populateFilters() {
         populateTable();
       });
     } else {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener("click", () => {
         // juste ouvrir/fermer le menu dropdown
         const r = btn.getBoundingClientRect();
         toolSubmenu.style.left = `${r.left + window.scrollX}px`;
@@ -164,9 +172,13 @@ function populateTable() {
       radio.classList.add("item-radio");
       radio.value = key;
 
+      // dans populateTable(), après avoir créé `radio`
       radio.addEventListener("change", () => {
         selectedItem = key;
         document.getElementById("quantity").value = 1;
+        // highlight
+        document.querySelectorAll("#itemTable tbody tr").forEach(r => r.classList.remove("selected-row"));
+        tr.classList.add("selected-row");
       });
 
       tdAction.appendChild(radio);

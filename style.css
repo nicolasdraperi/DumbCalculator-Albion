@@ -243,6 +243,7 @@ header.banner p {
 .item-radio:hover {
   border-color: #fff;
 }
+.selected-row { outline: 2px solid #ffd700; background:#3a3a3a !important; }
 
 /* === Filtre Tier === */
 #tierFilter {
