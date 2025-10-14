@@ -478,3 +478,177 @@ header.banner p {
 /* leaf tweak */
 .tree li.leaf:before { opacity: 0.35; }
 
+/* --- Card pliable -------------------------------------------------------- */
+.card {
+  background: #1f1f1f;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+  margin: 12px 0 16px;
+  overflow: clip;
+}
+.card summary {
+  list-style: none;
+  cursor: pointer;
+}
+.card summary::-webkit-details-marker { display: none; }
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #232323;
+  border-bottom: 1px solid #2a2a2a;
+}
+.card-title { font-weight: 700; font-size: 15px; }
+.card-actions { display: inline-flex; gap: 8px; }
+.card-actions button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+  background: #2a2a2a;
+  color: #ddd;
+  font-size: 12px;
+}
+.card-actions button:hover { background: #343434; }
+
+.card-body {
+  padding: 12px 14px;
+  /* IMPORTANT : annule tout centrage global */
+  text-align: left;
+}
+
+/* Chevron du titre de card */
+.card summary .card-title {
+  position: relative;
+  padding-left: 18px;
+}
+.card summary .card-title:before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 10px; height: 10px;
+  border: 2px solid #9a9a9a;
+  border-left-color: transparent; border-top-color: transparent;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform .15s ease;
+}
+.card[open] summary .card-title:before {
+  transform: translateY(-50%) rotate(225deg);
+}
+
+/* --- Tree view ----------------------------------------------------------- */
+.tree {
+  --line-color: #4a4a4a;
+  --row-bg: #2c2c2c;
+  --row-bg-hover: #343434;
+  --text-dim: #bfbfbf;
+  --badge-bg: #3b3b3b;
+  --badge-text: #eaeaea;
+
+  margin: 8px 0 16px;
+  padding-left: 6px;
+
+  /* IMPORTANT : s’assurer que rien n’est centré à l’intérieur */
+  text-align: left;
+}
+
+/* reset général dans la tree */
+.tree, .tree * { box-sizing: border-box; }
+
+/* Structure de branches */
+.tree ul {
+  margin: 0;
+  padding-left: 18px;
+  position: relative;
+}
+.tree ul:before {
+  content: "";
+  position: absolute;
+  left: 8px;           /* colonne des branches */
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line-color);
+  opacity: 0.5;
+}
+
+.tree li {
+  list-style: none;
+  position: relative;
+  padding-left: 12px;
+}
+.tree li:before {
+  content: "";
+  position: absolute;
+  left: -4px; top: 14px;
+  width: 12px; height: 1px;
+  background: var(--line-color);
+  opacity: 0.5;
+}
+.tree li.leaf:before { opacity: 0.35; }
+
+/* Node row (toujours collée à gauche, pas de centrage) */
+.tree .node-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--row-bg);
+  padding: 6px 8px;
+  border-radius: 8px;
+  line-height: 1.1;
+  transition: background 0.15s ease;
+}
+.tree .node-row:hover { background: var(--row-bg-hover); }
+
+.tree .node-icon {
+  width: 22px; height: 22px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.tree .node-name { font-weight: 600; }
+
+.tree .node-meta {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 4px;
+  color: var(--text-dim);
+}
+
+/* Petits badges */
+.tree .badge {
+  display: inline-flex;
+  align-items: center;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.tree .badge-qty { font-weight: 700; }
+.tree .badge-tier { opacity: 0.9; }
+
+/* details/summary pour les nœuds */
+.tree details { margin: 6px 0; }
+.tree summary {
+  list-style: none;
+  cursor: pointer;
+}
+.tree summary::-webkit-details-marker { display: none; }
+
+/* Notre petit chevron à gauche de chaque nœud */
+.tree summary .marker {
+  width: 10px; height: 10px; margin-right: 6px;
+  border: 1.5px solid var(--text-dim);
+  border-left-color: transparent; border-top-color: transparent;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+.tree details[open] > summary .marker { transform: rotate(45deg); }
+
+/* Ajuste légèrement dans la card */
+.card .tree { margin-top: 4px; }
+

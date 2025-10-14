@@ -423,6 +423,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const toolSubmenu = document.getElementById("toolSubmenu");
     const calcBtn = document.getElementById("calcBtn");
 
+    // Card (arbre)
+    const treeCard = document.getElementById("treeCard");
+    const treeBody = document.getElementById("treeBody");
+
     // recherche live
     if (searchInput && tbody) {
         searchInput.addEventListener("input", () => {
@@ -457,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // bouton calcul → nouveau rendu d'arbre
+    // bouton calcul → rend l'arbre dans la card + met les totaux en dessous
     if (calcBtn) {
         calcBtn.disabled = !selectedItem;
         calcBtn.addEventListener("click", () => {
@@ -467,34 +471,44 @@ document.addEventListener("DOMContentLoaded", () => {
             const root = buildTree(selectedItem, quantity);
             if (!root) return;
 
+            // Insertion de l'arbre dans la card
+            if (treeCard && treeBody) {
+                treeBody.innerHTML = ""; // reset
+                const tree = renderTreeContainer(root);
+                treeBody.appendChild(tree);
+                treeCard.style.display = ""; // afficher la card si masquée
+
+                // Boutons Expand/Collapse dans l'entête de la card
+                const expandBtn = document.getElementById("expandAll");
+                const collapseBtn = document.getElementById("collapseAll");
+                if (expandBtn) {
+                    expandBtn.onclick = (e) => {
+                        e.stopPropagation(); // ne pas replier la card
+                        treeBody.querySelectorAll(".tree details").forEach(d => { d.open = true; });
+                    };
+                }
+                if (collapseBtn) {
+                    collapseBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        treeBody.querySelectorAll(".tree details").forEach(d => { d.open = false; });
+                    };
+                }
+            }
+
+            // Totaux sous la card (dans #result)
             const resultDiv = document.getElementById("result");
-            if (!resultDiv) return;
-
-            resultDiv.innerHTML = "<h3>Ressources nécessaires :</h3>";
-
-            // Nouveau conteneur tree
-            const tree = renderTreeContainer(root);
-            resultDiv.appendChild(tree);
-
-            // Totaux
-            const totals = calculateTotals(root);
-            const totalsDiv = document.createElement("div");
-            totalsDiv.innerHTML = "<h3>Totaux bruts :</h3>";
-            totalsDiv.appendChild(displayTotals(totals));
-            resultDiv.appendChild(totalsDiv);
-
-            // Boutons Expand/Collapse (si présents dans le HTML)
-            const expandBtn = document.getElementById("expandAll");
-            const collapseBtn = document.getElementById("collapseAll");
-            if (expandBtn) expandBtn.onclick = () => {
-                document.querySelectorAll(".tree details").forEach(d => { d.open = true; });
-            };
-            if (collapseBtn) collapseBtn.onclick = () => {
-                document.querySelectorAll(".tree details").forEach(d => { d.open = false; });
-            };
+            if (resultDiv) {
+                resultDiv.innerHTML = ""; // on remplace l'ancien contenu
+                const totals = calculateTotals(root);
+                const totalsWrap = document.createElement("div");
+                totalsWrap.innerHTML = "<h3>Totaux bruts :</h3>";
+                totalsWrap.appendChild(displayTotals(totals));
+                resultDiv.appendChild(totalsWrap);
+            }
         });
     }
 });
+
 
 /* =========================
    Boot
