@@ -1,70 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <title>Dumbfuck Calculator</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" sizes="192x192" href="media/icon.png">
   <meta name="description"
-    content="Dumbfuck Calculator est un outil pour calculer les ressources nécessaires aux crafts dans Albion Online. Simple, rapide et pratique pour les joueurs.">
+        content="Dumbfuck Calculator est un outil pour calculer les ressources nécessaires aux crafts dans Albion Online. Simple, rapide et pratique pour les joueurs.">
 </head>
-
 <body>
 
-  <header class="banner">
-    <h1>Dumb Calculator</h1>
-    <p>Un calculateur pour Albion Online (En cours de construction)</p>
-  </header>
+<header class="banner">
+  <h1>Dumb Calculator</h1>
+  <p>Un calculateur pour Albion Online (En cours de construction)</p>
+</header>
 
-
-  <!-- Filtres + Recherche -->
-  <div id="filtersContainer">
-    <div id="filters"></div>
-    <div id="tierFilter"></div>
-    <div id="searchBar">
-      <label for="search">Rechercher :</label>
-      <input type="text" id="search" placeholder="Tapez un nom...">
-    </div>
+<!-- Filtres + Recherche -->
+<div id="filtersContainer">
+  <div id="filters"></div>
+  <div id="tierFilter"></div>
+  <div id="searchBar">
+    <label for="search">Rechercher :</label>
+    <input type="text" id="search" placeholder="Tapez un nom...">
   </div>
+</div>
 
-  <!-- Sous-menu Outils -->
-  <div id="toolSubmenu" style="display:none;">
-    <button data-sub="all">Tous</button>
-    <button data-sub="Hache">Hache</button>
-    <button data-sub="Pioche">Pioche</button>
-    <button data-sub="Faucille">Faucille</button>
-    <button data-sub="Couteau">Couteau</button>
-    <button data-sub="Marteau">Marteau</button>
-    <button data-sub="Canne à pêche">Canne à pêche</button>
+<!-- Sous-menu Outils -->
+<div id="toolSubmenu" style="display:none;">
+  <button data-sub="all">Tous</button>
+  <button data-sub="Hache">Hache</button>
+  <button data-sub="Pioche">Pioche</button>
+  <button data-sub="Faucille">Faucille</button>
+  <button data-sub="Couteau">Couteau</button>
+  <button data-sub="Marteau">Marteau</button>
+  <button data-sub="Canne à pêche">Canne à pêche</button>
+</div>
+
+<!-- Grille des items -->
+<table id="itemTable" class="item-table">
+  <thead>
+  <tr>
+    <th>Icône</th>
+    <th>Nom</th>
+    <th>Tier</th>
+    <th>Choisir</th>
+  </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<!-- Choix de quantité + bouton calcul -->
+<div id="calculator">
+  <label for="quantity">Quantité :</label>
+  <input type="number" id="quantity" value="1" min="1">
+  <button id="calcBtn">Calculer</button>
+</div>
+
+<!-- Card pliable : Arbre + actions -->
+<details id="treeCard" class="card collapsible" open style="display:none">
+  <summary>
+      <span class="card-head">
+        <span class="card-title">Ressources nécessaires</span>
+        <span class="card-actions">
+          <button id="expandAll" type="button">Tout déplier</button>
+          <button id="collapseAll" type="button">Tout replier</button>
+        </span>
+      </span>
+  </summary>
+  <div id="treeBody" class="card-body">
+    <!-- l’arbre sera injecté ici par script.js -->
   </div>
+</details>
+<div id="result"></div>
 
-  <!-- Grille des items -->
-  <table id="itemTable" class="item-table">
-    <thead>
-      <tr>
-        <th>Icône</th>
-        <th>Nom</th>
-        <th>Tier</th>
-        <th>Choisir</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-
-
-  <!-- Choix de quantité + bouton calcul -->
-  <div id="calculator">
-    <label for="quantity">Quantité :</label>
-    <input type="number" id="quantity" value="1" min="1">
-    <button id="calcBtn">Calculer</button>
-  </div>
-
-  <!-- Résultats -->
-  <div id="result"></div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>

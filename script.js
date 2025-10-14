@@ -19,10 +19,9 @@ let currentTier = "all";
 /** @type {"all" | string} */
 let currentSubCategory = "all";
 
-
-// -------------------------
-// 🔹 Charger les recettes
-// -------------------------
+/* =========================
+   Chargement des recettes
+   ========================= */
 async function loadRecipes() {
     try {
         const response = await fetch("recipes.json");
@@ -35,15 +34,13 @@ async function loadRecipes() {
     } catch (err) {
         console.error("Impossible de charger recipes.json:", err);
         const res = document.getElementById("result");
-        if (res) {
-            res.innerHTML = "<p style='color:#ff8080'>Erreur de chargement des recettes.</p>";
-        }
+        if (res) res.innerHTML = "<p style='color:#ff8080'>Erreur de chargement des recettes.</p>";
     }
 }
 
-// -------------------------
-// 🔹 Génération des filtres par catégorie
-// -------------------------
+/* =========================
+   Filtres catégories
+   ========================= */
 function populateFilters() {
     const filterContainer = document.getElementById("filters");
     if (!filterContainer) return;
@@ -54,7 +51,6 @@ function populateFilters() {
 
     /** @type {Set<string>} */
     const categories = new Set();
-
     for (let key in recipes) {
         const r = recipes[key];
         if (r && r.requires && Object.keys(r.requires).length > 0 && r.category) {
@@ -88,7 +84,6 @@ function populateFilters() {
         } else {
             btn.addEventListener("click", () => {
                 if (!toolSubmenu) return;
-                // ouvrir/fermer le menu dropdown positionné sous le bouton
                 const r = btn.getBoundingClientRect();
                 toolSubmenu.style.left = `${r.left + window.scrollX}px`;
                 toolSubmenu.style.top = `${r.bottom + window.scrollY + 6}px`;
@@ -100,13 +95,13 @@ function populateFilters() {
     });
 }
 
-// -------------------------
-// 🔹 Génération du filtre par tier
-// -------------------------
+/* =========================
+   Filtre par Tier
+   ========================= */
 function populateTierFilter() {
     const tierContainer = document.getElementById("tierFilter");
     if (!tierContainer) return;
-    tierContainer.innerHTML = ""; // reset
+    tierContainer.innerHTML = "";
 
     const label = document.createElement("label");
     label.setAttribute("for", "tierSelect");
@@ -117,16 +112,14 @@ function populateTierFilter() {
     const select = document.createElement("select");
     select.id = "tierSelect";
 
-    // option "Tous"
     const allOption = document.createElement("option");
     allOption.value = "all";
     allOption.textContent = "Tous";
     select.appendChild(allOption);
 
-    // options T2 → T8
     for (let i = 2; i <= 8; i++) {
         const opt = document.createElement("option");
-        opt.value = String(i);             // <- cast string
+        opt.value = String(i);
         opt.textContent = `Tier ${i}`;
         select.appendChild(opt);
     }
@@ -139,13 +132,13 @@ function populateTierFilter() {
     tierContainer.appendChild(select);
 }
 
-// -------------------------
-// 🔹 Tableau d’items
-// -------------------------
+/* =========================
+   Tableau items
+   ========================= */
 function populateTable() {
     const tbody = document.querySelector("#itemTable tbody");
     if (!tbody) return;
-    tbody.innerHTML = ""; // reset
+    tbody.innerHTML = "";
 
     for (let key in recipes) {
         const rec = recipes[key];
@@ -155,17 +148,17 @@ function populateTable() {
         const recipeTier = rec.tier;
 
         if (requirements && Object.keys(requirements).length > 0) {
-            // filtre par catégorie (sécurisé si category absent)
+            // Catégorie
             const cat = (rec.category || "").toLowerCase();
             if (currentCategory !== "all" && cat !== currentCategory) continue;
 
-            // filtre sous-catégorie outils
+            // Sous-catégorie outils
             if (currentCategory === "outil" && currentSubCategory !== "all") {
                 const sub = (rec.subCategory || "").toLowerCase();
                 if (sub !== String(currentSubCategory).toLowerCase()) continue;
             }
 
-            // filtre par tier
+            // Tier
             if (currentTier !== "all" && recipeTier !== parseInt(String(currentTier), 10)) continue;
 
             const tr = document.createElement("tr");
@@ -204,11 +197,9 @@ function populateTable() {
                 selectedItem = key;
                 const qty = document.getElementById("quantity");
                 if (qty) qty.value = "1";
-                // highlight
                 document.querySelectorAll("#itemTable tbody tr")
                     .forEach(r => r.classList.remove("selected-row"));
                 tr.classList.add("selected-row");
-                // activer le bouton calcul
                 const btn = document.getElementById("calcBtn");
                 if (btn) btn.disabled = false;
             });
@@ -221,15 +212,18 @@ function populateTable() {
     }
 }
 
-// -------------------------
-// 🔹 Construction de l'arbre
-// -------------------------
+/* =========================
+   Arbre (data)
+   ========================= */
 /**
  * @typedef {Object} TreeNode
  * @property {string} id
  * @property {string} name
  * @property {number} quantity
  * @property {Array<TreeNode>} children
+ */
+
+/**
  * @param {string} item
  * @param {number} quantity
  * @returns {(TreeNode|null)}
@@ -245,7 +239,8 @@ function buildTree(item, quantity) {
         children: []
     };
 
-    const recipe = recipes[item].requires;
+    /** @type {Record<string, number>} */
+    const recipe = recipes[item].requires || {};
     for (let ingredient in recipe) {
         const needed = recipe[ingredient] * quantity;
 
@@ -266,10 +261,93 @@ function buildTree(item, quantity) {
     return node;
 }
 
+/* =========================
+   Arbre (affichage)
+   ========================= */
+function createNodeRow(node) {
+    const wrap = document.createElement("span");
+    wrap.className = "node-row";
 
-// -------------------------
-// 🔹 Calcul des totaux
-// -------------------------
+    // chevron/marker (visible seulement si enfants)
+    const marker = document.createElement("span");
+    marker.className = "marker";
+    wrap.appendChild(marker);
+
+    const rec = recipes[node.id];
+    if (rec && rec.icon) {
+        const img = document.createElement("img");
+        img.src = rec.icon;
+        img.alt = node.name;
+        img.className = "node-icon";
+        wrap.appendChild(img);
+    }
+
+    const name = document.createElement("span");
+    name.className = "node-name";
+    name.textContent = node.name;
+    wrap.appendChild(name);
+
+    const meta = document.createElement("span");
+    meta.className = "node-meta";
+
+    const qty = document.createElement("span");
+    qty.className = "badge badge-qty";
+    qty.textContent = `x${node.quantity}`;
+    meta.appendChild(qty);
+
+    const tier = rec?.tier;
+    if (tier) {
+        const tb = document.createElement("span");
+        tb.className = "badge badge-tier";
+        tb.textContent = `Tier ${tier}`;
+        meta.appendChild(tb);
+    }
+
+    wrap.appendChild(meta);
+    return { row: wrap, marker };
+}
+
+function renderTree(node) {
+    // Feuille
+    if (!node.children || node.children.length === 0) {
+        const li = document.createElement("li");
+        li.className = "leaf";
+        const { row, marker } = createNodeRow(node);
+        marker.style.visibility = "hidden";
+        li.appendChild(row);
+        return li;
+    }
+
+    // Nœud avec enfants
+    const details = document.createElement("details");
+    details.open = true;
+    const summary = document.createElement("summary");
+
+    const { row } = createNodeRow(node);
+    summary.appendChild(row);
+    details.appendChild(summary);
+
+    const ul = document.createElement("ul");
+    node.children.forEach(child => ul.appendChild(renderTree(child)));
+    details.appendChild(ul);
+
+    const li = document.createElement("li");
+    li.appendChild(details);
+    return li;
+}
+
+function renderTreeContainer(root) {
+    const container = document.createElement("div");
+    container.className = "tree";
+    const ul = document.createElement("ul");
+    ul.appendChild(renderTree(root));
+    container.appendChild(ul);
+    return container;
+}
+
+/* =========================
+   Totaux
+   ========================= */
 /**
  * @param {{id:string,quantity:number,children:Array}} node
  * @param {Object.<string, number>} [totals]
@@ -284,25 +362,6 @@ function calculateTotals(node, totals = {}) {
     return totals;
 }
 
-// -------------------------
-// 🔹 Affichage arbre
-// -------------------------
-function displayTree(node, container) {
-    const li = document.createElement("li");
-    li.textContent = `${node.name} : ${node.quantity}`;
-
-    if (node.children.length > 0) {
-        const ul = document.createElement("ul");
-        node.children.forEach(child => displayTree(child, ul));
-        li.appendChild(ul);
-    }
-
-    container.appendChild(li);
-}
-
-// -------------------------
-// 🔹 Affichage totaux
-// -------------------------
 /**
  * @param {Object.<string, number>} totals
  * @returns {HTMLTableElement}
@@ -340,7 +399,7 @@ function displayTotals(totals) {
         tr.appendChild(tdName);
 
         const tdQty = document.createElement("td");
-        tdQty.textContent = String(totals[key]); // <- cast string
+        tdQty.textContent = String(totals[key]);
         tr.appendChild(tdQty);
 
         const tdTier = document.createElement("td");
@@ -353,9 +412,9 @@ function displayTotals(totals) {
     return table;
 }
 
-// -------------------------
-// 🔹 Listeners DOM
-// -------------------------
+/* =========================
+   DOM listeners
+   ========================= */
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search");
     const table = document.getElementById("itemTable");
@@ -364,12 +423,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const toolSubmenu = document.getElementById("toolSubmenu");
     const calcBtn = document.getElementById("calcBtn");
 
+    // Card (arbre)
+    const treeCard = document.getElementById("treeCard");
+    const treeBody = document.getElementById("treeBody");
+
     // recherche live
     if (searchInput && tbody) {
         searchInput.addEventListener("input", () => {
             const filter = searchInput.value.toLowerCase();
             const rows = tbody.getElementsByTagName("tr");
-
             for (let row of rows) {
                 const nameCell = row.cells[1];
                 if (nameCell) {
@@ -380,12 +442,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // sous-menu outils (clic sur une sous-catégorie)
+    // sous-menu outils
     if (toolSubmenu) {
         toolSubmenu.addEventListener("click", (e) => {
             const b = e.target.closest("button");
             if (!b) return;
-
             currentCategory = "outil";
             currentSubCategory = b.getAttribute("data-sub"); // doit matcher ton JSON
             toolSubmenu.style.display = "none";
@@ -400,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // bouton calcul
+    // bouton calcul → rend l'arbre dans la card + met les totaux en dessous
     if (calcBtn) {
         calcBtn.disabled = !selectedItem;
         calcBtn.addEventListener("click", () => {
@@ -410,25 +471,46 @@ document.addEventListener("DOMContentLoaded", () => {
             const root = buildTree(selectedItem, quantity);
             if (!root) return;
 
+            // Insertion de l'arbre dans la card
+            if (treeCard && treeBody) {
+                treeBody.innerHTML = ""; // reset
+                const tree = renderTreeContainer(root);
+                treeBody.appendChild(tree);
+                treeCard.style.display = ""; // afficher la card si masquée
+
+                // Boutons Expand/Collapse dans l'entête de la card
+                const expandBtn = document.getElementById("expandAll");
+                const collapseBtn = document.getElementById("collapseAll");
+                if (expandBtn) {
+                    expandBtn.onclick = (e) => {
+                        e.stopPropagation(); // ne pas replier la card
+                        treeBody.querySelectorAll(".tree details").forEach(d => { d.open = true; });
+                    };
+                }
+                if (collapseBtn) {
+                    collapseBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        treeBody.querySelectorAll(".tree details").forEach(d => { d.open = false; });
+                    };
+                }
+            }
+
+            // Totaux sous la card (dans #result)
             const resultDiv = document.getElementById("result");
-            if (!resultDiv) return;
-
-            resultDiv.innerHTML = "<h3>Ressources nécessaires :</h3>";
-
-            const ul = document.createElement("ul");
-            displayTree(root, ul);
-            resultDiv.appendChild(ul);
-
-            const totals = calculateTotals(root);
-            const totalsDiv = document.createElement("div");
-            totalsDiv.innerHTML = "<h3>Totaux bruts :</h3>";
-            totalsDiv.appendChild(displayTotals(totals));
-            resultDiv.appendChild(totalsDiv);
+            if (resultDiv) {
+                resultDiv.innerHTML = ""; // on remplace l'ancien contenu
+                const totals = calculateTotals(root);
+                const totalsWrap = document.createElement("div");
+                totalsWrap.innerHTML = "<h3>Totaux bruts :</h3>";
+                totalsWrap.appendChild(displayTotals(totals));
+                resultDiv.appendChild(totalsWrap);
+            }
         });
     }
 });
 
-// -------------------------
-// 🔹 Charger au démarrage
-// -------------------------
+
+/* =========================
+   Boot
+   ========================= */
 void loadRecipes();
