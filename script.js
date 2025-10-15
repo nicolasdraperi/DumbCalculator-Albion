@@ -140,77 +140,83 @@ function populateTable() {
     if (!tbody) return;
     tbody.innerHTML = "";
 
-    for (let key in recipes) {
-        const rec = recipes[key];
-        if (!rec) continue;
+    const MAX_ROWS = 10;
 
-        const requirements = rec.requires;
-        const recipeTier = rec.tier;
-
-        if (requirements && Object.keys(requirements).length > 0) {
+    // 1) Préparer une liste filtrée des recettes éligibles
+    const rows = Object.entries(recipes)
+        .filter(([, rec]) => !!rec && rec.requires && Object.keys(rec.requires).length > 0)
+        .filter(([, rec]) => {
             // Catégorie
             const cat = (rec.category || "").toLowerCase();
-            if (currentCategory !== "all" && cat !== currentCategory) continue;
+            if (currentCategory !== "all" && cat !== currentCategory) return false;
 
             // Sous-catégorie outils
             if (currentCategory === "outil" && currentSubCategory !== "all") {
                 const sub = (rec.subCategory || "").toLowerCase();
-                if (sub !== String(currentSubCategory).toLowerCase()) continue;
+                if (sub !== String(currentSubCategory).toLowerCase()) return false;
             }
 
             // Tier
-            if (currentTier !== "all" && recipeTier !== parseInt(String(currentTier), 10)) continue;
+            if (currentTier !== "all" && rec.tier !== parseInt(String(currentTier), 10)) return false;
 
-            const tr = document.createElement("tr");
+            return true;
+        })
+        // 2) Limiter à 10 éléments
+        .slice(0, MAX_ROWS);
 
-            // Icône
-            const tdIcon = document.createElement("td");
-            if (rec.icon) {
-                const img = document.createElement("img");
-                img.src = rec.icon;
-                img.alt = key;
-                img.style.width = "40px";
-                img.style.height = "40px";
-                tdIcon.appendChild(img);
-            }
-            tr.appendChild(tdIcon);
+    // 3) Construire les lignes
+    for (const [key, rec] of rows) {
+        const recipeTier = rec.tier;
+        const tr = document.createElement("tr");
 
-            // Nom
-            const tdName = document.createElement("td");
-            tdName.textContent = key.replace(/_/g, " ");
-            tr.appendChild(tdName);
-
-            // Tier
-            const tdTier = document.createElement("td");
-            tdTier.textContent = recipeTier ? `Tier ${recipeTier}` : "-";
-            tr.appendChild(tdTier);
-
-            // Radio choisir
-            const tdAction = document.createElement("td");
-            const radio = document.createElement("input");
-            radio.type = "radio";
-            radio.name = "selectedItem";
-            radio.classList.add("item-radio");
-            radio.value = key;
-
-            radio.addEventListener("change", () => {
-                selectedItem = key;
-                const qty = document.getElementById("quantity");
-                if (qty) qty.value = "1";
-                document.querySelectorAll("#itemTable tbody tr")
-                    .forEach(r => r.classList.remove("selected-row"));
-                tr.classList.add("selected-row");
-                const btn = document.getElementById("calcBtn");
-                if (btn) btn.disabled = false;
-            });
-
-            tdAction.appendChild(radio);
-            tr.appendChild(tdAction);
-
-            tbody.appendChild(tr);
+        // Icône
+        const tdIcon = document.createElement("td");
+        if (rec.icon) {
+            const img = document.createElement("img");
+            img.src = rec.icon;
+            img.alt = key;
+            img.style.width = "40px";
+            img.style.height = "40px";
+            tdIcon.appendChild(img);
         }
+        tr.appendChild(tdIcon);
+
+        // Nom
+        const tdName = document.createElement("td");
+        tdName.textContent = key.replace(/_/g, " ");
+        tr.appendChild(tdName);
+
+        // Tier
+        const tdTier = document.createElement("td");
+        tdTier.textContent = recipeTier ? `Tier ${recipeTier}` : "-";
+        tr.appendChild(tdTier);
+
+        // Radio choisir
+        const tdAction = document.createElement("td");
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "selectedItem";
+        radio.classList.add("item-radio");
+        radio.value = key;
+
+        radio.addEventListener("change", () => {
+            selectedItem = key;
+            const qty = document.getElementById("quantity");
+            if (qty) qty.value = "1";
+            document.querySelectorAll("#itemTable tbody tr")
+                .forEach(r => r.classList.remove("selected-row"));
+            tr.classList.add("selected-row");
+            const btn = document.getElementById("calcBtn");
+            if (btn) btn.disabled = false;
+        });
+
+        tdAction.appendChild(radio);
+        tr.appendChild(tdAction);
+
+        tbody.appendChild(tr);
     }
 }
+
 
 /* =========================
    Arbre (data)
