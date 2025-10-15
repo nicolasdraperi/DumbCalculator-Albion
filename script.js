@@ -157,9 +157,10 @@ function populateTable() {
             }
 
             // Tier
-            if (currentTier !== "all" && rec.tier !== parseInt(String(currentTier), 10)) return false;
 
-            return true;
+            return !(currentTier !== "all" && rec.tier !== parseInt(String(currentTier), 10));
+
+
         })
         // 2) Limiter à 10 éléments
         .slice(0, MAX_ROWS);
